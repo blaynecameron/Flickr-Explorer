@@ -70,16 +70,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    // selects random index number from the array
-    // NSUInteger randomIndex = arc4random() % [self.flickrImageResults count];
-    
     NSDictionary *image = [self.flickrImageResults objectAtIndex:indexPath.row];
+    
     UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];
     
     // gets the images from the URL and populates the collection view
-    [cellImageView sd_setImageWithURL:[NSURL URLWithString:[image objectForKey:@"url_c"]]
-                      placeholderImage:[UIImage imageNamed:@"browny.jpg"]];
     
+    NSString *string = [NSString stringWithFormat:@"%@", [image objectForKey:@"url_c"]];
+    NSURL *url = [NSURL URLWithString:string];
+    [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"browny.jpg"]];
+     
     return cell;
 }
 

@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+#import <UIImage+AFNetworking.h>
 
 @interface ImagDisplayViewController : UIViewController <MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 

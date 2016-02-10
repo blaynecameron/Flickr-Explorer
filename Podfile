@@ -6,7 +6,6 @@
 target 'Persistence' do
 
 pod 'AFNetworking'
-pod 'SDWebImage'
 
 end
 

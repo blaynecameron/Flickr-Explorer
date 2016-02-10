@@ -62,9 +62,10 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMG-1X-7da">
                                 <rect key="frame" x="-4" y="510" width="328" height="58"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13S-ju-YjA">
-                                        <rect key="frame" x="141" y="14" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13S-ju-YjA">
+                                        <rect key="frame" x="135" y="14" width="58" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Refresh"/>
                                         <connections>
                                             <action selector="refreshDeletePressed:" destination="osH-MB-5hO" eventType="touchUpInside" id="O9a-Ex-3ZX"/>
                                         </connections>
