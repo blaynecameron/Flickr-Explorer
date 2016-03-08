@@ -19,10 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getDataFromFlickr];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-
-    [self getDataFromFlickr];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -32,7 +32,7 @@
 #pragma mark - Get Request
 
 - (void)getDataFromFlickr {
-    NSString *flickrURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=beba702929ec6ae35f47073e531c07d0&privacy_filter=1&accuracy=16&content_type=1&lat=%f&lon=%f&extras=url_c&per_page=100&format=json&nojsoncallback=1",self.pinPressedCoordinates.latitude, self.pinPressedCoordinates.longitude];
+    NSString *flickrURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0d1f4732f76deefaacc0664293235d08&accuracy=16&content_type=1&lat=%f&lon=%f&extras=url_m&per_page=100&page=1&format=json&nojsoncallback=1",self.pinPressedCoordinates.latitude, self.pinPressedCoordinates.longitude];
     
     // get request to retrieve json with image URLs
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -42,6 +42,7 @@
         self.flickrImageResults = [[NSMutableArray alloc] initWithArray:[response objectForKey:@"photo"]];
         
         [self shuffleFlickrArrayAndRefreshCollectionView];
+        // [self.collectionView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error.localizedDescription);
     }];
@@ -63,7 +64,11 @@
 #pragma mark - Collection View
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 21;
+    if ([self.flickrImageResults count] > 21) {
+        return 21;
+    } else {
+        return [self.flickrImageResults count];
+    }
 }
 
 
@@ -75,11 +80,9 @@
     UIImageView *cellImageView = (UIImageView *)[cell viewWithTag:100];
     
     // gets the images from the URL and populates the collection view
+    NSString *string = [NSString stringWithFormat:@"%@", [image objectForKey:@"url_m"]];
+    [cellImageView setImageWithURL:[NSURL URLWithString:string]];
     
-    NSString *string = [NSString stringWithFormat:@"%@", [image objectForKey:@"url_c"]];
-    NSURL *url = [NSURL URLWithString:string];
-    [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"browny.jpg"]];
-     
     return cell;
 }
 
@@ -101,7 +104,8 @@
     return 3.0;
 }
 
-#pragma mark - Custom Methods
+#pragma mark - Shuffle NSarray
+
 // Shuffles our array so that we can provide users with random unique photos
 - (void)shuffleFlickrArrayAndRefreshCollectionView {
     NSUInteger count = [self.flickrImageResults count];

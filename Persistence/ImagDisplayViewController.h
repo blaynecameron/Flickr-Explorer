@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <Foundation/Foundation.h>
 #import <AFNetworking.h>
-#import <UIImage+AFNetworking.h>
+#import <UIImageView+AFNetworking.h>
 
 @interface ImagDisplayViewController : UIViewController <MKMapViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 

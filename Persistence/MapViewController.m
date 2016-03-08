@@ -25,13 +25,13 @@ BOOL delete;
     
     [self instantiateMapViewAndLocationManager];
     [self addLongPressGestureToMapView];
+    
+    [self setSavedPinsOnMap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // sets bool value for delete button
     delete = NO;
-    
-    [self setSavedPinsOnMap];
 }
 
 #pragma mark - View Setup
